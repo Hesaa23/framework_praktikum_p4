@@ -23,5 +23,5 @@ class RoleCheck
         }
         Auth::logout();
         return redirect()->route('login')->with('status', 'Akses halaman ini dibatasi.');
-    }
+    }   
 }

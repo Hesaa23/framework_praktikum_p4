@@ -45,7 +45,7 @@ Route::get('/rahasia', function () {
     return "Halaman ini rahasia";
 })->middleware(['auth', 'RoleCheck:admin']);
 
-Route::get('/product/{number}', [ProductController::class, 'index']);
+Route::get('/product/{number}', [ProductController::class, 'index'])->middleware(['auth', 'RoleCheck:admin,owner']);
 
 
 
