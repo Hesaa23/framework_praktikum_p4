@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,15 +21,15 @@ Route::get('/', function () {
 
 Route::get('/', function () {
     return view('welcome');
-})->name(name:'welcome.page');
+})->name(name: 'welcome.page');
 
-Route::get('/about', function(){
+Route::get('/about', function () {
     return view('about');
-})->name(name:'about.page');
+})->name(name: 'about.page');
 
-Route::get('/contact', function(){
+Route::get('/contact', function () {
     return view('contact');
-})->name(name:'contact.page');
+})->name(name: 'contact.page');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -40,4 +41,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::get('/rahasia', function () {
+    return "Halaman ini rahasia";
+})->middleware(['auth', 'RoleCheck:admin']);
+
+Route::get('/product/{number}', [ProductController::class, 'index']);
+
+
+
+require __DIR__ . '/auth.php';
